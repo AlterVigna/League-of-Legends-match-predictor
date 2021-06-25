@@ -1,0 +1,650 @@
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+
+  <title>League of Legends Match Predictor</title>
+  <meta name="description" content="Data Mining and Machine Learning Project">
+  <meta name="author" content="Davide Vigna">
+  <link rel="stylesheet" href="{{ url_for('static', filename='styles.css') }}"/>
+  <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+  <script src="{{ url_for('static', filename='jqueryUserInteractionFunctions.js') }}"></script> 
+</head>
+	
+<body>
+
+	<div class="mainFrame">
+
+		<div class="text_top"><h1 class="textWinner">WINNER : </h1><span class="winner"></span></div>
+			<hr>
+				<div class="middleFrame">
+				<table class="mainTable">
+					<thead>
+						<tr>
+							<th colspan="4" class="blueTeam"> TEAM BLUE </th>
+							<th colspan="4" class="redTeam"> TEAM RED </th>
+						</tr>
+					</thead>
+					
+					<tbody>		
+<!-- START 1 ROW  -->	
+						<tr>
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> LEVELS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_LEVEL_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_LEVEL_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> CURRENT GOLD </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_CURR_GOLD_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_CURR_GOLD_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL GOLD </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_TOT_GOLD_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_TOT_GOLD_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL MINIONS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_TOT_MINIONS_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_TOT_MINIONS_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> LEVELS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_LEVEL_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_LEVEL_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> CURRENT GOLD </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_CURR_GOLD_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_CURR_GOLD_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL GOLD </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_TOT_GOLD_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_TOT_GOLD_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL MINIONS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_TOT_MINIONS_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_TOT_MINIONS_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+						</tr>	
+<!-- END 1 ROW -->						
+						
+<!-- START 2 ROW  -->						
+						<tr>
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL JGL MINIONS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_TOTJNG_MINIONS_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_TOTJNG_MINIONS_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL DRAGONS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_DRAGONS_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_DRAGONS_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL HERALDS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_HERALDS_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_HERALDS_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL INHIBITORS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_inhibitors_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_inhibitors_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL JGL MINIONS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_TOTJNG_MINIONS_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_TOTJNG_MINIONS_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL DRAGONS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_DRAGONS_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_DRAGONS_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL HERALDS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_HERALDS_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_HERALDS_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL INHIBITORS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_inhibitors_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_inhibitors_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+						</tr>
+<!-- END 2 ROW  -->	
+<!-- START 3 ROW  -->							
+						<tr>
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL KILLS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_TOT_KILLS_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_TOT_KILLS_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL DEATHS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_TOT_DEATH_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_TOT_DEATH_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL ASSISTS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_TOT_ASSIST_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_TOT_ASSIST_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL TOWERS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_towers_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_towers_15"type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL KILLS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_TOT_KILLS_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_TOT_KILLS_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL DEATHS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_TOT_DEATH_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_TOT_DEATH_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL ASSISTS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_TOT_ASSIST_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_TOT_ASSIST_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL TOWERS </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_towers_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_towers_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+						</tr>
+<!-- END 3 ROW  -->	
+<!-- START 4 ROW  -->						
+						<tr>
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL WARD PLACED </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_WARD_PLACED_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_WARD_PLACED_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							
+							<td> 
+									<table class="innerTable  blueTeam">
+											<tr> 
+												<th colspan="2"> TOTAL WARD DESTR. </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="BLUE_WARD_DESTR_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="BLUE_WARD_DESTR_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td class="blueTeam"></td>
+							<td class="blueTeam"></td>
+							
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL WARD PLACED </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_WARD_PLACED_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_WARD_PLACED_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td> 
+									<table class="innerTable  redTeam">
+											<tr> 
+												<th colspan="2"> TOTAL WARD DESTR. </th>
+											</tr>
+											<tr> 
+												<th class="timeWrite"> 10 Min </th>
+												<th class="timeWrite"> 15 Min </th>
+											</tr>
+											<tr> 
+												<th> <input id="RED_WARD_DESTR_10" type="text" size="5"  maxlength="6"> </th>
+												<th> <input id="RED_WARD_DESTR_15" type="text" size="5"  maxlength="6"> </th>
+											</tr>
+									</table>
+							</td>
+							<td class="redTeam"></td>
+							<td class="redTeam"></td>
+						</tr>
+<!-- END 4 ROW  -->	
+<!-- START 5 ROW -->
+						<tr>
+							<td class="blueTeam firstEvent"> FIRST KILL </td>
+							<td class="blueTeam firstEvent textCenter">  
+									<input type="radio" class="radio" id ="BLUE_firstKill_1" name="BLUE_firstKill" value="1" > Yes
+									<input type="radio" class="radio" id ="BLUE_firstKill_0" name="BLUE_firstKill" value="0" checked> No
+							</td>
+							<td class="blueTeam"></td>
+							<td class="blueTeam"></td>
+							
+							<td class="redTeam firstEvent"> FIRST KILL </td>
+							<td class="redTeam firstEvent textCenter">  
+									<input type="radio" class="radio" id ="RED_firstKill_1" name="RED_firstKill" value="1" > Yes
+									<input type="radio" class="radio" id ="RED_firstKill_0" name="RED_firstKill" value="0" checked> No
+							</td>
+							<td class="redTeam"></td>
+							<td class="redTeam"></td>
+						</tr>
+<!-- END 5 ROW  -->
+<!-- START 6 ROW -->	
+						<tr>
+							<td class="blueTeam firstEvent"> FIRST TOWER 10 MIN</td>
+							<td class="blueTeam firstEvent textCenter">  
+							
+									<input type="radio" class="radio" id ="BLUE_firstTower10_1" name="BLUE_firstTower10" value="1" > Yes
+									<input type="radio" class="radio" id ="BLUE_firstTower10_0" name="BLUE_firstTower10" value="0" checked> No
+							</td>
+							<td class="blueTeam firstEvent"> FIRST TOWER 15 MIN</td>
+							<td class="blueTeam firstEvent textCenter">  
+							
+									<input type="radio" class="radio" id="BLUE_firstTower15_1" name="BLUE_firstTower15" value="1" > Yes
+									<input type="radio" class="radio" id="BLUE_firstTower15_0" name="BLUE_firstTower15" value="0" checked> No
+							</td>
+							
+							
+							<td class="redTeam firstEvent"> FIRST TOWER 10 MIN</td>
+							<td class="redTeam firstEvent textCenter">  
+							
+									<input type="radio" class="radio" id="RED_firstTower10_1" name="RED_firstTower10" value="1" > Yes
+									<input type="radio" class="radio" id="RED_firstTower10_0" name="RED_firstTower10" value="0" checked> No
+							</td>
+							<td class="redTeam firstEvent "> FIRST TOWER 15 MIN</td>
+							<td class="redTeam firstEvent textCenter">  
+							
+									<input type="radio" class="radio" id="RED_firstTower15_1" name="RED_firstTower15" value="1" > Yes
+									<input type="radio" class="radio" id="RED_firstTower15_0" name="RED_firstTower15" value="0" checked> No
+							</td>
+						</tr>
+<!-- END 6 ROW -->
+<!-- START 7 ROW -->
+						<tr>
+							<td class="blueTeam firstEvent"> FIRST DRAGON 10 MIN</td>
+							<td class="blueTeam firstEvent textCenter">  
+							
+									<input type="radio" id="BLUE_FIRST_DRAGON_10_1" class="radio" name="BLUE_firstDragon10" value="1" > Yes
+									<input type="radio" id="BLUE_FIRST_DRAGON_10_0" class="radio" name="BLUE_firstDragon10" value="0" checked> No
+							</td>
+							<td class="blueTeam firstEvent"> FIRST DRAGON 15 MIN</td>
+							<td class="blueTeam firstEvent textCenter">  
+							
+									<input type="radio" id="BLUE_FIRST_DRAGON_15_1" class="radio" name="BLUE_firstDragon15" value="1" > Yes
+									<input type="radio" id="BLUE_FIRST_DRAGON_15_0" class="radio" name="BLUE_firstDragon15" value="0" checked> No
+							</td>
+							
+							
+							<td class="redTeam firstEvent"> FIRST DRAGON 10 MIN</td>
+							<td class="redTeam firstEvent textCenter">  
+							
+									<input type="radio" id="RED_FIRST_DRAGON_10_1" class="radio" name="RED_firstDragon10" value="1" > Yes
+									<input type="radio" id="RED_FIRST_DRAGON_10_0" class="radio" name="RED_firstDragon10" value="0" checked> No
+							</td>
+							<td class="redTeam firstEvent "> FIRST DRAGON 15 MIN</td>
+							<td class="redTeam firstEvent textCenter">  
+							
+									<input type="radio" id="RED_FIRST_DRAGON_15_1" class="radio" name="RED_firstDragon15" value="1" > Yes
+									<input type="radio" id="RED_FIRST_DRAGON_15_0" class="radio" name="RED_firstDragon15" value="0" checked> No
+							</td>
+						</tr>
+<!-- END 7 ROW -->
+<!-- START 8 ROW -->
+					<tr>
+							<td class="blueTeam firstEvent"> FIRST INHIBITOR</td>
+							<td class="blueTeam firstEvent textCenter">  
+									<input type="radio" id="BLUE_firstInhibitor_1" class="radio" name="BLUE_firstInhibitor" value="1" > Yes
+									<input type="radio" id="BLUE_firstInhibitor_0" class="radio" name="BLUE_firstInhibitor" value="0" checked> No
+							</td>
+							<td class="blueTeam firstEvent"> FIRST TOWER LANE</td>
+							<td class="blueTeam firstEvent textCenter">  
+									<select name="BLUE_firstTowerLane" id="BLUE_firstTowerLane">
+										  <option value="NONE">NONE</option>
+										  <option value="TOP_LANE">TOP</option>
+										  <option value="MID_LANE">MID</option>
+										  <option value="BOT_LANE">BOT</option>
+									</select>
+							</td>
+							
+							<td class="redTeam firstEvent"> FIRST INHIBITOR</td>
+							<td class="redTeam firstEvent textCenter">  
+									<input type="radio" class="radio" id="RED_firstInhibitor_1"  name="RED_firstInhibitor" value="1" > Yes
+									<input type="radio" class="radio" id="RED_firstInhibitor_0"  name="RED_firstInhibitor" value="0" checked> No
+							</td>
+							<td class="redTeam firstEvent"> FIRST TOWER LANE</td>
+							<td class="redTeam firstEvent textCenter">  
+									<select name="RED_firstTowerLane" id="RED_firstTowerLane">
+										  <option value="NONE">NONE</option>
+										  <option value="TOP_LANE">TOP</option>
+										  <option value="MID_LANE">MID</option>
+										  <option value="BOT_LANE">BOT</option>
+									</select>
+							</td>	
+					</tr>	
+<!-- END 8 ROW -->
+
+					</tbody>
+
+				</table>
+				
+				<div>
+						<table class="loadFile">
+							<tr>
+								<td> <input type="file"  id="uploadMatch" name="uploadMatch" accept=".csv"> </td>
+								<!-- <td> <button class="buttonLoad">LOAD</button> </td> -->
+								<td> <button class="buttonPredict">PREDICT</button> </td>
+								<td> <button class="buttonReset">RESET</button> </td>
+							</tr>
+						</table>
+				</div>
+					
+					<!-- <form>
+						<h1>Sign In</h1>
+						<input type="text" size="5"  maxlength="6">
+						<h1>Password</h1>
+						<input type="password"><br>
+
+							<button>Log In</button>
+					</form> -->
+				</div>
+			<hr>
+
+<!-- LOGIN FORM -->
+	</div>
+
+
+</body>
+
+
+<script>
+
+
+
+
+
+
+
+
+
+
+
+
+
+</script>
+
+
+
+
+</html>
